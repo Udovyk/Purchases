@@ -42,5 +42,6 @@ ext {
     roomVersion = '1.1.1'
     butterKnifeVersion = '9.0.0-rc3'
     moxyVersion = '1.5.3'
+    glideVersion = '4.2.0'
 
 }

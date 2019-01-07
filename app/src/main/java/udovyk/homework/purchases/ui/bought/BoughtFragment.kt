@@ -25,8 +25,8 @@ class BoughtFragment : BaseFragment(), BoughtView {
     }
 
 
-    @BindView(R.id.button1)
-    lateinit var btn1 : Button
+    /*@BindView(R.id.button1)
+    lateinit var btn1 : Button*/
 
     @Inject
     @InjectPresenter
@@ -43,15 +43,10 @@ class BoughtFragment : BaseFragment(), BoughtView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn1.setOnClickListener {
-            test()
-        }
+
     }
 
 
     override fun getLayoutRes(): Int = R.layout.fragment_bought
 
-    override fun test() {
-        presenter.test()
-    }
 }

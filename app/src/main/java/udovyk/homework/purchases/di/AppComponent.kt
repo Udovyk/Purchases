@@ -8,15 +8,19 @@ import dagger.android.support.AndroidSupportInjectionModule
 import udovyk.homework.purchases.PurchasesApp
 import udovyk.homework.purchases.di.module.ActivityBuilderModule
 import udovyk.homework.purchases.di.module.AppModule
+import udovyk.homework.purchases.di.module.DbModule
 import udovyk.homework.purchases.di.module.FragmentBuilderModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [
-    AppModule::class,
-    AndroidSupportInjectionModule::class,
-    ActivityBuilderModule::class,
-    FragmentBuilderModule::class])
+@Component(
+    modules = [
+        AppModule::class,
+        AndroidSupportInjectionModule::class,
+        ActivityBuilderModule::class,
+        FragmentBuilderModule::class,
+        DbModule::class]
+)
 interface AppComponent : AndroidInjector<PurchasesApp> {
 
     @Component.Builder
@@ -26,4 +30,7 @@ interface AppComponent : AndroidInjector<PurchasesApp> {
 
         fun build(): AppComponent
     }
+
+    override fun inject(instance: PurchasesApp)
+
 }

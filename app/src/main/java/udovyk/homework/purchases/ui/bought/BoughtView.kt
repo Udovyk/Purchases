@@ -4,5 +4,5 @@ import com.arellomobile.mvp.MvpView
 
 interface BoughtView : MvpView {
 
-    fun test()
+
 }

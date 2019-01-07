@@ -10,7 +10,5 @@ import javax.inject.Inject
 @InjectViewState
 class BoughtPresenter @Inject constructor(val context: Context) : BasePresenter<BoughtView>()  {
 
-    fun test() {
-        Toast.makeText(context, "BOUGHT test passed", Toast.LENGTH_SHORT).show()
-    }
+
 }
