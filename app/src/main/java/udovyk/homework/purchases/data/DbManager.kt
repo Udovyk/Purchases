@@ -5,7 +5,9 @@ import io.reactivex.Flowable
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class DbManager @Inject constructor(private val purchaseDao: PurchaseDao) {
 
     val executor: Executor = Executors.newSingleThreadExecutor()

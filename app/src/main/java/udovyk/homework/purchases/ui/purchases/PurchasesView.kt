@@ -7,4 +7,6 @@ interface PurchasesView : MvpView {
 
     fun updatePurchasesList()
 
+
+
 }

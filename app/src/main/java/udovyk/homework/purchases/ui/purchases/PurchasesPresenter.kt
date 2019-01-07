@@ -21,7 +21,9 @@ class PurchasesPresenter @Inject constructor(val context: Context) : BasePresent
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 Log.d("Test", "getAllPurchases inside call ")
+
                 purchasesLiveData.postValue(it)
+
                 //todo handle exceptions
             }
     }

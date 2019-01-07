@@ -1,5 +1,6 @@
 package udovyk.homework.purchases.ui.purchases
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
@@ -46,25 +47,14 @@ class PurchasesFragment : BaseFragment(), PurchasesView {
     val purchasesObservable : Observer<List<PurchaseEntity>> = Observer {
 
         if (it != null && it.isNotEmpty()) {
-
-            Log.d("Test", "purchasesObservable " + {if(it.size == 0) "fdf"  else it[0].imageUri.toString()} )
             adapter.clear()
             adapter.addAll(it)
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        presenter.purchasesLiveData.observe(this, purchasesObservable)
-    }
-    /*override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.purchasesLiveData.observe(this, purchasesObservable)
-    }*/
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
