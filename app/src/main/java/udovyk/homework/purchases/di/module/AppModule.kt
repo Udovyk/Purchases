@@ -15,10 +15,6 @@ internal object AppModule {
     @JvmStatic
     fun provideContext(application: Application): Context = application
 
-        //todo add later di
-   /* @Provides
-    @Singleton
-    @JvmStatic
-    fun provideSectionsPageAdapter(): SectionsPageAdapter = SectionsPageAdapter()*/
+
 
 }

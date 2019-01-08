@@ -1,4 +1,4 @@
-package udovyk.homework.purchases.ui.purchases.adapter
+package udovyk.homework.purchases.ui.bought.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.item_purchase.view.*
 import udovyk.homework.purchases.R
 import udovyk.homework.purchases.data.PurchaseEntity
 
-class PurchasesListAdapter : RecyclerView.Adapter<PurchasesListAdapter.ViewHolder>() {
+class BoughtListAdapter : RecyclerView.Adapter<BoughtListAdapter.ViewHolder>() {
     private val list = mutableListOf<PurchaseEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
@@ -20,15 +20,10 @@ class PurchasesListAdapter : RecyclerView.Adapter<PurchasesListAdapter.ViewHolde
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //todo refactor later
-
         Glide
             .with(holder.itemView.context)
             .load(list.get(position).imageUri)
             .into(holder.imPurchases)
-
-        holder.icIsBought.visibility = if (list[position].isBought == true) View.VISIBLE else View.GONE
-
     }
 
     fun add(item: PurchaseEntity) {
@@ -46,22 +41,12 @@ class PurchasesListAdapter : RecyclerView.Adapter<PurchasesListAdapter.ViewHolde
         notifyDataSetChanged()
     }
 
-   /* fun setIsBought(value: Boolean, position: Int) {
-        isBought = value
-        clickedPosition = position
-    }*/
-
-    fun getData(position: Int): PurchaseEntity = list[position]
-
-
     fun clear() {
         list.clear()
         notifyDataSetChanged()
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //todo View Holder
         val imPurchases = view.im_purchase
-        val icIsBought = view.ic_bought
     }
 }

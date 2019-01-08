@@ -13,7 +13,7 @@ class DbManager @Inject constructor(private val purchaseDao: PurchaseDao) {
     val executor: Executor = Executors.newSingleThreadExecutor()
 
     fun insertPurchase(purchaseEntity: PurchaseEntity): Completable {
-        return Completable.fromAction{
+        return Completable.fromAction {
             purchaseDao.insertPurchase(purchaseEntity)
         }
     }
@@ -32,7 +32,11 @@ class DbManager @Inject constructor(private val purchaseDao: PurchaseDao) {
 
     fun deleteAll(): Int = purchaseDao.deleteAll()
 
-    fun updateIsPurchaseOnById(isPurchaseOn: Boolean, id: Int) = purchaseDao.updateIsPurchaseBoughtById(isPurchaseOn, id)
+    fun updateIsPurchaseOnById(isPurchaseOn: Boolean, id: Int): Completable {
+        return Completable.fromAction {
+            purchaseDao.updateIsPurchaseBoughtById(isPurchaseOn, id)
+        }
+    }
 
     //todo add update all -> selected all
     /*fun updateAlarmById(alarmMinutes: String, alarmHours: String, isAlarmOn: Boolean, mondayCheck: Boolean, tuesdayCheck: Boolean, wednesdayCheck: Boolean, thursdayCheck: Boolean, fridayCheck: Boolean, saturdayCheck: Boolean, sundayCheck: Boolean, id: Int) {

@@ -1,11 +1,19 @@
 <resources>
-    <string name="app_name">Purchases</string>
+    <!--<string name="app_name">Purchases</string>
     <string name="purchases">Purchases</string>
     <string name="bought">Bought</string>
     <string name="chose_from_gallery">Choose from gallery</string>
     <string name="choose_from_camera">Choose from camera</string>
     <string name="choose_from">Choose from</string>
     <string name="ok">ok</string>
+    <string name="need_permission">need permission</string>-->
+    <string name="app_name">Список покупок</string>
+    <string name="purchases">Покупки</string>
+    <string name="bought">Купленные</string>
+    <string name="chose_from_gallery">Галереи</string>
+    <string name="choose_from_camera">Камеры</string>
+    <string name="choose_from">Выбрать из</string>
+    <string name="ok">ок</string>
     <string name="need_permission">need permission</string>
 
 </resources>

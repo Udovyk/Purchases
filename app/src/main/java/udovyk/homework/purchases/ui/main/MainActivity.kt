@@ -103,6 +103,7 @@ class MainActivity : BaseActivity(), MainView {
                     val purchase = PurchaseEntity(imageUri = uri.toString())
                     addPurchaseToList(purchase)
 
+
                 }
             }
         }
