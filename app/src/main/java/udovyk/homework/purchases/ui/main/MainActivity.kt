@@ -73,7 +73,6 @@ class MainActivity : BaseActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        //toolbar.overflowIcon = getDrawable(R.drawable.ic_shopping_cart_black_24dp)
         ButterKnife.bind(this)
         setUpViewPager()
         tabLayout.setupWithViewPager(viewPager)
