@@ -19,19 +19,18 @@ import javax.inject.Inject
 
 @InjectViewState
 class BoughtPresenter @Inject constructor() : BasePresenter<BoughtView>()  {
-
+    private val TAG = "BoughtPresenter"
     val boughtLiveData : MutableLiveData<List<PurchaseEntity>> = MutableLiveData()
 
     fun getBought() {
         disposable += dbManager.getAllPurchases()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-
+            .subscribe( {
                 val listBoughtOnly = it.filter { it.isBought == true }
-                boughtLiveData.postValue(listBoughtOnly)
-
-                //todo handle exceptions
+                boughtLiveData.postValue(listBoughtOnly) }, {
+                Log.e(TAG, it.message)
             }
+        )
     }
 
 }

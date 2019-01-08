@@ -1,7 +1,6 @@
 package udovyk.homework.purchases.ui.purchases
 
 import android.arch.lifecycle.MutableLiveData
-import android.content.Context
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,7 +12,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class PurchasesPresenter @Inject constructor() : BasePresenter<PurchasesView>() {
-    private val TAG = "MainPresenter"
+    private val TAG = "PurchasesPresenter"
     val purchasesLiveData: MutableLiveData<List<PurchaseEntity>> = MutableLiveData()
 
     fun getAllPurchases() {
@@ -21,11 +20,7 @@ class PurchasesPresenter @Inject constructor() : BasePresenter<PurchasesView>() 
             .getAllPurchases()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                Log.d("Test", "getBought inside call ")
-
                 purchasesLiveData.postValue(it)
-
-                //todo handle exceptions
             }
     }
 
@@ -35,7 +30,6 @@ class PurchasesPresenter @Inject constructor() : BasePresenter<PurchasesView>() 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({}, { Log.e(TAG, it.message) })
-        Log.d("Test", " MainPresenter buyPurchase, insertPurchase")
     }
 }
 

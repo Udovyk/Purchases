@@ -12,10 +12,4 @@ abstract class ActivityBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun bindMainActivity(): MainActivity
-
-/*    //todo add later di
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideSectionsPageAdapter(): SectionsPageAdapter = */
 }

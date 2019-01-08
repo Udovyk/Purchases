@@ -6,7 +6,6 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class RecyclerTouchListener @Inject constructor(context: Context) :
     GestureDetector.SimpleOnGestureListener(), RecyclerView.OnItemTouchListener {

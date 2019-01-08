@@ -52,13 +52,9 @@ class MainActivity : BaseActivity(), MainView {
     @ProvidePresenter
     fun providePresenter(): MainPresenter = presenter
 
-    //todo inject later
-    var sectionsPageAdapter = SectionsPageAdapter(supportFragmentManager)
+    private var sectionsPageAdapter = SectionsPageAdapter(supportFragmentManager)
 
-
-    //todo test
     private var photoFile: File? = null
-    //todo test
 
     private val addButtonCallback by lazy {
         object : ChoosePhotoSourceDialog.Callbacks {
@@ -79,16 +75,9 @@ class MainActivity : BaseActivity(), MainView {
         setSupportActionBar(toolbar)
         //toolbar.overflowIcon = getDrawable(R.drawable.ic_shopping_cart_black_24dp)
         ButterKnife.bind(this)
-        setUpViewPager(viewPager)
+        setUpViewPager()
         tabLayout.setupWithViewPager(viewPager)
-
-        fab.setOnClickListener {
-            Log.d("Test", "fab was clicked")
-            val dialog = ChoosePhotoSourceDialog.newInstance()
-            dialog.callbacks = addButtonCallback
-            dialog.show(supportFragmentManager, ChoosePhotoSourceDialog.TAG)
-        }
-
+        clicks()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -97,18 +86,13 @@ class MainActivity : BaseActivity(), MainView {
             when (requestCode) {
                 REQUEST_IMAGE_PICK -> {
                     val uri = data?.data
-                    Log.d("Test", "onActivityResult " + uri.toString())
                     val purchase = PurchaseEntity(imageUri = uri.toString())
-                    addPurchaseToList(purchase)
-
+                    presenter.buyPurchase(purchase)
                 }
                 REQUEST_IMAGE_CAPTURE -> {
                     val uri = Uri.fromFile(photoFile)
-                    Log.d("Test", "onActivityResult " + uri.toString())
                     val purchase = PurchaseEntity(imageUri = uri.toString())
-                    addPurchaseToList(purchase)
-
-
+                    presenter.buyPurchase(purchase)
                 }
             }
         }
@@ -129,12 +113,15 @@ class MainActivity : BaseActivity(), MainView {
         return true
     }
 
-    override fun addPurchaseToList(purchaseEntity: PurchaseEntity) {
-        presenter.buyPurchase(purchaseEntity)
+    private fun clicks() {
+        fab.setOnClickListener {
+            val dialog = ChoosePhotoSourceDialog.newInstance()
+            dialog.callbacks = addButtonCallback
+            dialog.show(supportFragmentManager, ChoosePhotoSourceDialog.TAG)
+        }
     }
 
-
-    override fun setUpViewPager(viewPager: ViewPager) {
+    private fun setUpViewPager() {
         sectionsPageAdapter.addFragment(PurchasesFragment.newInstance(), getString(R.string.purchases))
         sectionsPageAdapter.addFragment(BoughtFragment.newInstance(), getString(R.string.bought))
         viewPager.adapter = sectionsPageAdapter

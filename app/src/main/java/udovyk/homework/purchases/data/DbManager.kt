@@ -2,15 +2,11 @@ package udovyk.homework.purchases.data
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class DbManager @Inject constructor(private val purchaseDao: PurchaseDao) {
-
-    val executor: Executor = Executors.newSingleThreadExecutor()
 
     fun insertPurchase(purchaseEntity: PurchaseEntity): Completable {
         return Completable.fromAction {
@@ -43,11 +39,4 @@ class DbManager @Inject constructor(private val purchaseDao: PurchaseDao) {
             purchaseDao.updateAllPurchases(isPurchaseOn)
         }
     }
-
-
-
-    //todo add update all -> selected all
-    /*fun updateAlarmById(alarmMinutes: String, alarmHours: String, isAlarmOn: Boolean, mondayCheck: Boolean, tuesdayCheck: Boolean, wednesdayCheck: Boolean, thursdayCheck: Boolean, fridayCheck: Boolean, saturdayCheck: Boolean, sundayCheck: Boolean, id: Int) {
-        purchaseDao.updateAlarmById(alarmMinutes, alarmHours, isAlarmOn, mondayCheck, tuesdayCheck, wednesdayCheck, thursdayCheck, fridayCheck, saturdayCheck, sundayCheck, id)
-    }*/
 }

@@ -8,8 +8,9 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_purchase.view.*
 import udovyk.homework.purchases.R
 import udovyk.homework.purchases.data.PurchaseEntity
+import javax.inject.Inject
 
-class BoughtListAdapter : RecyclerView.Adapter<BoughtListAdapter.ViewHolder>() {
+class BoughtListAdapter @Inject constructor(): RecyclerView.Adapter<BoughtListAdapter.ViewHolder>() {
     private val list = mutableListOf<PurchaseEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {

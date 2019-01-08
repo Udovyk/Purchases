@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import java.util.ArrayList
-import javax.inject.Inject
 
 
 class SectionsPageAdapter (fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {

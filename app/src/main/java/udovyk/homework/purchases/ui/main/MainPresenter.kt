@@ -1,6 +1,7 @@
 package udovyk.homework.purchases.ui.main
 
 import android.content.Context
+import android.support.v4.view.ViewPager
 import android.util.Log
 import android.widget.Toast
 import com.arellomobile.mvp.InjectViewState
@@ -12,7 +13,7 @@ import udovyk.homework.purchases.ui.base.BasePresenter
 import javax.inject.Inject
 
 @InjectViewState
-class MainPresenter @Inject constructor(val context: Context) : BasePresenter<MainView>() {
+class MainPresenter @Inject constructor() : BasePresenter<MainView>() {
     private val TAG = "MainPresenter"
 
     fun buyPurchase(purchaseEntity: PurchaseEntity) {
@@ -21,7 +22,6 @@ class MainPresenter @Inject constructor(val context: Context) : BasePresenter<Ma
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({}, { Log.e(TAG, it.message) })
-        Log.d("Test", " MainPresenter buyPurchase, insertPurchase")
     }
 
     fun buyAllPurchases(value: Boolean) {
@@ -30,6 +30,5 @@ class MainPresenter @Inject constructor(val context: Context) : BasePresenter<Ma
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({}, { Log.e(TAG, it.message) })
-        Log.d("Test", " MainPresenter buyPurchase, insertPurchase")
     }
 }

@@ -20,10 +20,8 @@ class BoughtFragment : BaseFragment(), BoughtView {
 
     companion object {
         const val TAG = "BoughtFragment"
-
         fun newInstance() : BoughtFragment {
             val boughtFragment = BoughtFragment()
-
             return boughtFragment
         }
     }
@@ -37,11 +35,10 @@ class BoughtFragment : BaseFragment(), BoughtView {
     @ProvidePresenter
     fun providePresenter(): BoughtPresenter = presenter
 
-    //todo inject later
-    private val adapter = BoughtListAdapter()
+    @Inject
+    lateinit var adapter: BoughtListAdapter
 
-    val boughtObservable : Observer<List<PurchaseEntity>> = Observer {
-
+    private val boughtObservable : Observer<List<PurchaseEntity>> = Observer {
         if (it != null && it.isNotEmpty()) {
             adapter.clear()
             adapter.addAll(it)
@@ -53,32 +50,16 @@ class BoughtFragment : BaseFragment(), BoughtView {
         presenter.boughtLiveData.observe(this, boughtObservable)
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-
         presenter.getBought()
-
     }
 
     private fun initRecyclerView() {
-
         rvBought.setHasFixedSize(false)
-        //todo GridSpacingItemDecoration
-        //rvPurchases.addItemDecoration(GridSpacingItemDecoration(2, 5,  true))
-        /*rvPurchases.offsetChildrenVertical(5)
-        rvPurchases.offsetChildrenHorizontal(5)*/
-        rvBought.layoutManager = GridLayoutManager(context, 2)
-
         rvBought.adapter = adapter
-
     }
-
 
     override fun getLayoutRes(): Int = R.layout.fragment_bought
 
