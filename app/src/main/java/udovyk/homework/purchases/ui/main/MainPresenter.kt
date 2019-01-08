@@ -15,12 +15,21 @@ import javax.inject.Inject
 class MainPresenter @Inject constructor(val context: Context) : BasePresenter<MainView>() {
     private val TAG = "MainPresenter"
 
-    fun addPurchase(purchaseEntity: PurchaseEntity) {
+    fun buyPurchase(purchaseEntity: PurchaseEntity) {
         disposable += dbManager
             .insertPurchase(purchaseEntity)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({}, { Log.e(TAG, it.message) })
-        Log.d("Test", " MainPresenter addPurchase, insertPurchase")
+        Log.d("Test", " MainPresenter buyPurchase, insertPurchase")
+    }
+
+    fun buyAllPurchases(value: Boolean) {
+        disposable += dbManager
+            .updateAllPurchases(value)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({}, { Log.e(TAG, it.message) })
+        Log.d("Test", " MainPresenter buyPurchase, insertPurchase")
     }
 }

@@ -38,6 +38,14 @@ class DbManager @Inject constructor(private val purchaseDao: PurchaseDao) {
         }
     }
 
+    fun updateAllPurchases(isPurchaseOn: Boolean): Completable {
+        return Completable.fromAction {
+            purchaseDao.updateAllPurchases(isPurchaseOn)
+        }
+    }
+
+
+
     //todo add update all -> selected all
     /*fun updateAlarmById(alarmMinutes: String, alarmHours: String, isAlarmOn: Boolean, mondayCheck: Boolean, tuesdayCheck: Boolean, wednesdayCheck: Boolean, thursdayCheck: Boolean, fridayCheck: Boolean, saturdayCheck: Boolean, sundayCheck: Boolean, id: Int) {
         purchaseDao.updateAlarmById(alarmMinutes, alarmHours, isAlarmOn, mondayCheck, tuesdayCheck, wednesdayCheck, thursdayCheck, fridayCheck, saturdayCheck, sundayCheck, id)

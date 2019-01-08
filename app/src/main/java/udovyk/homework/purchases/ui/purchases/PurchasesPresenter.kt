@@ -35,7 +35,7 @@ class PurchasesPresenter @Inject constructor() : BasePresenter<PurchasesView>() 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({}, { Log.e(TAG, it.message) })
-        Log.d("Test", " MainPresenter addPurchase, insertPurchase")
+        Log.d("Test", " MainPresenter buyPurchase, insertPurchase")
     }
 }
 

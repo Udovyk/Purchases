@@ -8,11 +8,14 @@ import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import kotlinx.android.synthetic.main.activity_main.*
 import udovyk.homework.purchases.R
 import udovyk.homework.purchases.common.Constants.REQUEST_IMAGE_CAPTURE
 import udovyk.homework.purchases.common.Constants.REQUEST_IMAGE_PICK
@@ -73,6 +76,8 @@ class MainActivity : BaseActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
+        //toolbar.overflowIcon = getDrawable(R.drawable.ic_shopping_cart_black_24dp)
         ButterKnife.bind(this)
         setUpViewPager(viewPager)
         tabLayout.setupWithViewPager(viewPager)
@@ -92,14 +97,14 @@ class MainActivity : BaseActivity(), MainView {
             when (requestCode) {
                 REQUEST_IMAGE_PICK -> {
                     val uri = data?.data
-                    Log.d("Test", "onActivityResult " + uri.toString() )
+                    Log.d("Test", "onActivityResult " + uri.toString())
                     val purchase = PurchaseEntity(imageUri = uri.toString())
                     addPurchaseToList(purchase)
 
                 }
                 REQUEST_IMAGE_CAPTURE -> {
                     val uri = Uri.fromFile(photoFile)
-                    Log.d("Test", "onActivityResult " + uri.toString() )
+                    Log.d("Test", "onActivityResult " + uri.toString())
                     val purchase = PurchaseEntity(imageUri = uri.toString())
                     addPurchaseToList(purchase)
 
@@ -109,12 +114,24 @@ class MainActivity : BaseActivity(), MainView {
         }
     }
 
-
-    override fun addPurchaseToList(purchaseEntity: PurchaseEntity) {
-        presenter.addPurchase(purchaseEntity)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.menu_item_buy_all -> {
+                presenter.buyAllPurchases(true)
+            }
+        }
+        return true
+    }
 
+    override fun addPurchaseToList(purchaseEntity: PurchaseEntity) {
+        presenter.buyPurchase(purchaseEntity)
+    }
 
 
     override fun setUpViewPager(viewPager: ViewPager) {

@@ -38,11 +38,10 @@ interface PurchaseDao {
     @Query("UPDATE purchases SET isBought = :isBought WHERE id = :id")
     fun updateIsPurchaseBoughtById(isBought: Boolean, id: Int)
 
+    @Query("UPDATE purchases SET isBought = :isBought")
+    fun updateAllPurchases(isBought: Boolean)
+
     //todo add update all -> selected all
 
-    /*@Query("UPDATE purchases SET alarmMinutes = :alarmMinutes, alarmHours = :alarmHours, isAlarmEnabled = :isAlarmOn, mondayCheck = :mondayCheck, tuesdayCheck = :tuesdayCheck, wednesdayCheck = :wednesdayCheck, thursdayCheck = :thursdayCheck, fridayCheck = :fridayCheck, saturdayCheck = :saturdayCheck, sundayCheck = :sundayCheck  WHERE id = :id")
-    fun updateAlarmById(alarmMinutes: String, alarmHours: String, isAlarmOn: Boolean,
-                        mondayCheck: Boolean, tuesdayCheck: Boolean, wednesdayCheck: Boolean,
-                        thursdayCheck: Boolean, fridayCheck: Boolean, saturdayCheck: Boolean, sundayCheck: Boolean, id: Int)*/
 
 }

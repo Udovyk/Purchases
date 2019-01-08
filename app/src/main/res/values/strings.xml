@@ -15,5 +15,6 @@
     <string name="choose_from">Выбрать из</string>
     <string name="ok">ок</string>
     <string name="need_permission">need permission</string>
+    <string name="buy_all_items">Купить все позиции</string>
 
 </resources>
